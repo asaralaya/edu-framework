@@ -1,0 +1,13 @@
+.Side-left {
+    background-color: #00a8a4;
+    height: 100%;
+    left: -100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transform: skew(313deg);
+    width: 150%;
+    z-index: -1;
+    box-shadow: 18px 11px 82px 16px rgba(0,0,0,0.75);
+
+}
