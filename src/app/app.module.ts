@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChatService } from './services/chat.service';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ExploreContentComponent } from './components/explore-content/explore-content.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     TaxonomyViewComponent,
     TermCardComponent,
     TaxonomyColumnViewComponent,
-    AddContentComponent
+    AddContentComponent,
+    ExploreContentComponent,
   ],
   imports: [
     BrowserModule,

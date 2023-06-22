@@ -7,13 +7,18 @@
 }
 
 .search {
-  background: white;
+  font-size: 20px;
+    line-height: 1.5rem;
+    background-color: rgba(255,255,255,.8);
+    width: 85%;
+    margin: auto;
 }
-
+.error{
+  color: indianred;
+}
 .banner {
-  background: white;
-  width: fit-content;
-  margin: auto;
+  color: white;
+font-weight: 600;
 }
 .responseData{
 border: 2px ;
@@ -21,6 +26,26 @@ border: 2px ;
 }
 h1 {
   font-size: 50px;
+
+  font-variant-caps: small-caps;
+  font-family: sans-serif;
+}
+.ask-btn{
+  
+  border: none;
+  padding: 20px 40px;
+  font-size: 20px;
+  font-weight: 900;
+  position: relative;
+  background: transparent;
+  color: white;
+  text-transform: uppercase;
+  border: 3px solid #ffa500;
+  cursor: pointer;
+  transition: all 0.7s;
+  overflow: hidden;
+  border-radius: 100px;
+
 }
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
@@ -35,10 +60,10 @@ button:active,
   background-color: $color;
   border: 2px solid $color;
 
-  &:hover {
-    background-color: transparent;
-    color: $color;
-  }
+  // &:hover {
+  //   background-color: transparent;
+  //   color: $color;
+  // }
 }
 
 .btn {

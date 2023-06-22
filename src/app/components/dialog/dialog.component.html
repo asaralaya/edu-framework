@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+  <p>You are taking a step towards helping your child gain following competencies:</p>
+  <p><b>{{data.description}}</b></p>
+</div>
+<div mat-dialog-actions>
+  <div class="row">
+    <div class="col d-flex justify-content-center ">
+      <button class="primary" mat-raised-button color="primary" (click)="navigate(data.url);onNoClick()">Take
+        me</button>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <button class="secondary" mat-raised-button color="warn" (click)="onNoClick()">No</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.primary{
+        color: rgb(49, 46, 46) !important;
+        background-color: rgba(255, 222, 121, 0.96) !important;
+        border-radius: 10px 0 0 10px !important;
+        border: none;
+}
+
+.secondary{
+    color: rgb(49, 46, 46) !important;
+    background-color: rgba(255, 130, 121, 0.96) !important;
+    border-radius:  0 10px 10px 0 !important;
+    border: none;
+    width: 5rem;
+}
+
+
+::ng-deep {
+    .cdk-overlay-pane {
+        font-size: 20px;
+    }
+ }

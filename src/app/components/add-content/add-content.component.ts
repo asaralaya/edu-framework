@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-content',
@@ -6,24 +7,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-content.component.scss']
 })
 export class AddContentComponent implements OnInit {
-  contentName:string;
+  contentName: string;
   selectedLanguages: string[] = [];
   selectedThemes: string[] = [];
-  contentType: string;
   ageGroup: number;
   contentLink: string;
   description: string;
-  selectedSuggestedCompetencies: string[] = [];
-  selectedAllCompetencies: string[] = [];
+  selectedCompetency: string[] = [];
 
-  languages: string[] = ['English','Hindi','Gujarati','Assamese','Tamil','Marathi','Kannada'];
-  themes: string[] = ['Animals','Birds','Vegetables','Nature','Relations'];
-  suggestedCompetencies: string[] = ['Competency 1', 'Competency 2', 'Competency 3'];
-  allCompetencies: string[] = ['Competency A', 'Competency B', 'Competency C'];
+  languages: string[] = ['English', 'Hindi', 'Gujarati', 'Assamese', 'Tamil', 'Marathi', 'Kannada'];
+  themes: string[] = ['Animals', 'Birds', 'Vegetables', 'Nature', 'Relations'];
+  contentType: string[] = ['Video', 'Read Along', 'Read', 'Audio', 'Sign Language'];
+  competency: string[] = ['Competency A', 'Competency B', 'Competency C'];
+  routeEnabled: boolean = false;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
+  data: string;
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.route.queryParams.subscribe(queryParams => {
+      this.data = queryParams['data'];
+      if (this.data) {
+        this.selectedCompetency.push(this.data)
+        this.routeEnabled = true;
+      }
+      console.log(this.selectedCompetency)
+    });
+
   }
-
 }

@@ -1,0 +1,71 @@
+<mat-toolbar color="primary">
+  <span>Explore Content!</span>
+  <div class="spacer"></div>
+  <button mat-button routerLink="/home">Home</button>
+</mat-toolbar>
+
+<div class="container">
+
+  <mat-card class="card-data my-4">
+    <mat-card-header>
+      <mat-card-title>Select Your Content</mat-card-title>
+    </mat-card-header>
+
+    <div class="row mt-3 mobile">
+      <div class="col d-flex justify-content-center">
+        <mat-form-field>
+          <mat-label>Select a Theme</mat-label>
+          <mat-select (selectionChange)="themeChange()" [(value)]="theme">
+            <mat-option value="Home Activities">Home Activities</mat-option>
+            <mat-option value="Birds"> Birds</mat-option>
+            <mat-option value="Vegetables">Vegetables</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col d-flex justify-content-center">
+        <mat-form-field>
+          <mat-label>Select a Language</mat-label>
+          <mat-select (selectionChange)="languageChange()" [(value)]="language">
+            <mat-option value="English">English</mat-option>
+            <mat-option value="Hindi">Hindi</mat-option>
+            <mat-option value="Kannada">Kannada</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col d-flex justify-content-center">
+        <mat-form-field>
+          <mat-label>Select a Type</mat-label>
+          <mat-select (selectionChange)="typeChange()" [(value)]="type">
+            <mat-option value="Video">Video</mat-option>
+            <mat-option value="Read">Read</mat-option>
+            <mat-option value="Audio">Audio</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col btn">
+        <button mat-raised-button class="clear-button" (click)="clicked()">Clear</button>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card *ngFor="let content of data;let i=index" class="head mb-3">
+    <mat-card-header class="d-flex bg" (click)="openDialog(content.id)">
+      <div mat-card-avatar class="example-header-image">
+        <img width="70px" height="70x" src="{{content.icon}}" alt="">
+      </div>
+      <mat-card-title class="mt-2">{{content.title}} </mat-card-title>
+      <mat-card-subtitle> <b>{{content.type}} | in {{content.language}} | Source: {{content.source}}</b>
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+
+  <mat-card *ngIf="data.length===0" class="head no-content ">
+    <mat-card-title class="mt-2">No Content found with the above filters! </mat-card-title>
+  </mat-card>
+
+
+</div>

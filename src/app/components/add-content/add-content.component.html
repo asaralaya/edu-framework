@@ -1,62 +1,59 @@
 <mat-toolbar color="primary">
-    <span>Contribute!</span>
-    <div class="spacer"></div>
-    <button mat-button routerLink="/home">Home</button>
+  <span>Contribute!</span>
+  <div class="spacer"></div>
+  <button mat-button routerLink="/home">Home</button>
 </mat-toolbar>
 
 <form class="form-container">
-    <mat-form-field>
-      <input matInput placeholder="Name of the content" [(ngModel)]="contentName" name="contentName" required>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Language</mat-label>
-      <mat-select [(ngModel)]="selectedLanguages" name="selectedLanguages" multiple required>
-        <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Theme</mat-label>
-      <mat-select [(ngModel)]="selectedThemes" name="selectedThemes" multiple required>
-        <mat-option *ngFor="let theme of themes" [value]="theme">{{ theme }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Type of content</mat-label>
-      <mat-select [(ngModel)]="contentType" name="contentType" required>
-        <mat-option value="Option 1">Option 1</mat-option>
-        <mat-option value="Option 2">Option 2</mat-option>
-        <mat-option value="Option 3">Option 3</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <input matInput type="number" placeholder="Age group relevant to" [(ngModel)]="ageGroup" name="ageGroup" required>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <input matInput placeholder="Link to the content" [(ngModel)]="contentLink" name="contentLink" required>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <textarea matInput placeholder="Description" [(ngModel)]="description" name="description" required></textarea>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Suggested Competencies</mat-label>
-      <mat-select [(ngModel)]="selectedSuggestedCompetencies" name="selectedSuggestedCompetencies" multiple required>
-        <mat-option *ngFor="let competency of suggestedCompetencies" [value]="competency">{{ competency }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>All Competencies</mat-label>
-      <mat-select [(ngModel)]="selectedAllCompetencies" name="selectedAllCompetencies" multiple required>
-        <mat-option *ngFor="let competency of allCompetencies" [value]="competency">{{ competency }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" type="submit">Submit</button>
-  </form>
+  <mat-form-field>
+    <input matInput placeholder="Name of the content" [(ngModel)]="contentName" name="contentName" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Language</mat-label>
+    <mat-select [(ngModel)]="selectedLanguages" name="selectedLanguages" multiple required>
+      <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Theme</mat-label>
+    <mat-select [(ngModel)]="selectedThemes" name="selectedThemes" multiple required>
+      <mat-option *ngFor="let theme of themes" [value]="theme">{{ theme }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Type of content</mat-label>
+    <mat-select [(ngModel)]="contentType" name="contentType" required>
+      <mat-option *ngFor="let type of contentType" [value]="type">{{ type }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Age group relevant to" [(ngModel)]="ageGroup" name="ageGroup" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Link to the content" [(ngModel)]="contentLink" name="contentLink" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Description" [(ngModel)]="description" name="description" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="!routeEnabled">
+    <mat-label>Competency</mat-label>
+    <mat-select [(ngModel)]="selectedCompetency" name="competency" multiple required>
+      <mat-option *ngFor="let comp of competency" [value]="comp">{{ comp }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="routeEnabled">
+    <mat-label>Competency</mat-label>
+    <input matInput [(ngModel)]="selectedCompetency" name="competency" disabled>
+
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

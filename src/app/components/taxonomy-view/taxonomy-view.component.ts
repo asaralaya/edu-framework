@@ -8,6 +8,7 @@ import { labels } from '../../labels/strings';
 import { CardSelection, CardChecked, Card } from '../../models/variable-type.model';
 import { leastIndex } from 'd3';
 import { ChatService } from 'src/app/services/chat.service';
+import { Router } from '@angular/router';
 
 declare var LeaderLine: any;
 @Component({
@@ -37,11 +38,12 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
   nodeType: any;
   learningList = []
   responseData: string;
-  showLoader: boolean=false;
+  showLoader: boolean = false;
+  nodeCompetency: any = '';
   constructor(private frameworkService: FrameworkService,
     public dialog: MatDialog,
     private connectorSvc: ConnectorService,
-    private chatService: ChatService) { }
+    private chatService: ChatService, private router: Router) { }
 
   ngOnInit() {
     this.init()
@@ -74,20 +76,21 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
     if (data.selectedTerm?.category === 'competency') {
       this.nodeType = 'leaf'
       this.learningList = data.selectedTerm.children;
-      this.responseData = ''
-      this.showLoader=true
-      const params = {
-        uuid_number: '269ff416-1057-11ee-8f12-0242ac110002',
-        query_string: 'list down in bullets learning outcome for ' + data.selectedTerm.name
-      };
-      this.chatService.search(params).subscribe(
-        (response: any) => {
-          this.showLoader=false
-          this.responseData = response.answer
-        },
-        (error: any) => {
-          // Handle any error here
-        });
+      this.nodeCompetency = data.selectedTerm.name;
+      // this.responseData = ''
+      // this.showLoader=true
+      // const params = {
+      //   uuid_number: '269ff416-1057-11ee-8f12-0242ac110002',
+      //   query_string: 'list down in bullets learning outcome for ' + data.selectedTerm.name
+      // };
+      // this.chatService.search(params).subscribe(
+      //   (response: any) => {
+      //     this.showLoader=false
+      //     this.responseData = response.answer
+      //   },
+      //   (error: any) => {
+      //     // Handle any error here
+      //   });
 
     } else {
       this.nodeType = 'normal'
@@ -262,11 +265,8 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
     //console.log("ondestro")
     this.connectorSvc.removeAllLines()
   }
-  geData(data) {
-    //  console.log(data)
-  }
-
-  parseResponseData(responseData: any) {
-    return responseData.split('-');
+  navigateToRoute(): void {
+    const data = this.nodeCompetency;
+    this.router.navigate(['content'], { queryParams: { data } });
   }
 }
