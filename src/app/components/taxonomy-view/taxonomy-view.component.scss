@@ -1,0 +1,249 @@
+//colors
+$grey: #666666;
+$black: #000000;
+$white: #FFFFFF;
+$dark-grey: #363636;
+$white-smoke: #F3F3F3;
+$light-gray: #EEEEEE;
+$light-dark-grey: #9B9B9B;
+
+//font-sizes
+$font-size-8: 8px;
+$font-size-9: 9px;
+$font-size-10: 10px;
+$font-size-11: 11px;
+$font-size-12: 12px;
+$font-size-14: 14px;
+$font-size-16: 16px;
+$font-size-20: 20px;
+$font-size-24: 24px;
+
+.connectionSettings {
+    flex-direction: row-reverse;
+    z-index: 40;
+    position: fixed;
+    padding: 0px 4px 4px 0px;
+    bottom: 0;
+    right: 0;
+}
+.flex {
+    display: flex;
+}
+.heading-color {
+    color: black;
+    opacity: 0.5;
+}
+
+.w-full {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    // white-space: initial;
+    &.mat-stroked-button{
+        padding: 0.25em 0.8em;
+        text-align: left;
+        border: 2px dotted #b1b1b1;
+        color: #666;
+        border-radius: 8px;
+        .mat-icon{
+            position: absolute;
+            top: 0%;
+            right: 3%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.mb1{
+    margin-bottom: 1em;
+}
+
+flex-center {
+    flex-wrap: nowrap;
+    align-items: start;
+    justify-content: center;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.felx-col {
+    flex-direction: column;
+}
+
+.padding-x2 {
+    padding: 0 2.5em;
+}
+
+.heightFix{
+    height: 100%;
+   // width: 100%;
+    justify-content: space-around;
+}
+
+.cat-columns {
+    position: relative;
+    height: inherit;
+    /* z-index: 9; */
+}
+
+.col-container {
+    height: inherit;
+}
+
+.category-heading-sticky {
+    top: 0;
+    position: sticky;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 5px;
+    z-index: 10;
+}
+
+.category-heading-container {
+    box-sizing: content-box;
+    position: relative;
+    display: block;
+    padding: 1px 2.5em;
+    height: 62px;
+    .category-header {
+        display:flex;
+        align-items: center;
+        &-items{
+            display: flex;
+            align-items: center;
+            padding:0 10px;
+        }
+        h4 {
+            padding: 0px 10px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        span {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+    }
+}
+.cat-columns:hover {
+    overflow-y: scroll;
+}
+
+
+/* .cat-columns:hover .category-heading-sticky {
+    position: sticky;
+} */
+
+.container {
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    height: calc(100% - 16vh);
+  }
+  
+  .container::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+  }
+
+.spinner{
+    position: fixed;
+    display: flex;
+    top:50%;
+    left:50%;
+}
+.arrow {
+    left: 30px;
+    position: relative;
+}
+::ng-deep mat-checkbox .mat-checkbox-inner-container {
+    @media only screen and (max-width: 1024px) {
+        height: 0.8em;
+        width: 0.8em;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .containers4 {
+        max-width: 250px;
+        font-size: $font-size-10;
+    }
+    .containers5 {
+        //Adjust below width for five
+        max-width: 230px;
+    }
+    .containers6 {
+        //Adjust below width for six
+        max-width: 150px;
+    }
+    .containers7 {
+        //Adjust below width for seven
+        max-width: 100px;
+    }
+    .w-full {
+        height: 3.5em;
+        &.mat-stroked-button {
+            font-size: $font-size-8;
+        }
+    }
+    .padding-x2,.category-heading-container {
+        padding: 0 2em;
+    }
+    mat-icon {
+       font-size: $font-size-12;
+       width: 1.25em;
+       height: 1.25em; 
+    }
+    .connectionSettings .mat-raised-button {
+        min-width:auto;
+        padding: 0em 0.5em;
+        line-height: 2em;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .containers4 {
+        max-width: 220px;
+        font-size: $font-size-9;
+    }
+    .padding-x2,.category-heading-container {
+        padding: 0 1.5em;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .containers4 {
+        max-width: 165px;
+        font-size: $font-size-8;
+    }
+    .w-full {
+        height: 2.5em;
+    }
+    .padding-x2,.category-heading-container {
+        padding: 0 1em;
+    }
+    mat-icon {
+       font-size: $font-size-8;
+       width: 1em;
+       height: 1em; 
+    }
+    .connectionSettings .mat-raised-button {
+        min-width:auto;
+        padding: 0em 0.3em;
+        line-height: 1.5em;
+    }
+
+}
+
+.heading{
+    display: flex;
+   justify-content: center;
+    text-align: center;
+    font-size: larger;
+    font-weight: 400;
+    background: lightgray;
+}

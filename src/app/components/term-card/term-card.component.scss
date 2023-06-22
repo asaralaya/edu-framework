@@ -1,0 +1,67 @@
+//colors
+$grey: #666666;
+$black: #000000;
+$white: #FFFFFF;
+$dark-grey: #363636;
+$white-smoke: #F3F3F3;
+$light-gray: #EEEEEE;
+$light-dark-grey: #9B9B9B;
+
+//font-sizes
+$font-size-8: 8px;
+$font-size-9: 9px;
+$font-size-10: 10px;
+$font-size-11: 11px;
+$font-size-12: 12px;
+$font-size-14: 14px;
+$font-size-16: 16px;
+$font-size-20: 20px;
+$font-size-24: 24px;
+
+.term-card {
+    border: 1px solid $light-gray;
+    padding: 0.5em;
+    margin: 0 0 1em 0;
+    background-color: $white;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    z-index: 45;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    .termSelection{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    .term-card-parent {
+        display: flex;
+        width: 90%;
+        .term-card-content {
+            white-space: initial;
+            margin-left: 0.5em;
+            .card-title {
+                margin-bottom: 0.5em;
+            }
+            .card-description {
+                opacity: 0.5;
+            }
+        }
+    }
+    .term-card-checkbox {
+        width: 10%;
+    }
+}
+.term-card.selected {
+    color: $white;
+    border-style: none;
+    background: lightseagreen;
+}
+.clickable {
+    cursor: pointer;
+}
+.approve-flag{
+    position: absolute;
+    right: 5px;
+    top: 35px;
+    font-size: $font-size-24;
+}

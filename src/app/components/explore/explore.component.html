@@ -1,9 +1,14 @@
-
 <mat-toolbar color="primary">
     <span>EXPLORE!</span>
     <div class="spacer"></div>
-    <button mat-button routerLink="/home">Home</button>
-  </mat-toolbar>
-  <div class="explore">
+    <button mat-button (click)="goToHome()">Home</button>
+</mat-toolbar>
+<div class="explore">
+    <!-- <div class="d3-chart" #chart></div> -->
+   <!-- <div class="d3-chart container tree d-flex justify-content-center align-items-center" #chart></div> -->
 
-  </div>
+   <lib-taxonomy-view></lib-taxonomy-view>
+
+</div>
+
+

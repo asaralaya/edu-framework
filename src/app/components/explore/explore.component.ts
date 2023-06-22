@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
@@ -7,9 +6,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreComponent implements OnInit {
 
-  constructor() { }
 
+  constructor() {
+
+  }
   ngOnInit(): void {
+
+  }
+  ngOnChanges(changes: any) {
+
+  }
+  goToHome() {
+    location.href = '/home';
   }
 
 }
+

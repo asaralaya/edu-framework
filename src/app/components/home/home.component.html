@@ -2,20 +2,48 @@
 
 
 <div class="container">
-  <div class="d-flex flex-column justify-content-center align-item-center text-center">
-    <h1>NCF Framework</h1>
-    <h3>Explore NCF framework for various stages!!</h3>
+  <div class="banner d-flex flex-column justify-content-center align-item-center text-center py-4">
+    <h1>Childhood Connect</h1>
+    <h3>Become a part of a transformative journey</h3>
   </div> 
 
+<div class="row text-info mt-5 py-1 d-flex text-align-center justify-content-center text-center">
+  The new National Curriculum Framework for Foundational Stage is a transformative framework that aims integrated, holistic approach to Early Childhood Care and Education for children aged 3-8, aiming to improve the quality of educational content and outcomes, thus positively impacting children's lives towards a better future.
+
+</div>
+  
+<div class="row search mt-5">
+
+  <!-- <div class="flex justify-content-center align-item-center"> -->
+    <!-- <div class="w-50"> -->
+      <div class="d-flex flex-column justify-content-center align-item-center mt-4 mb-5  w-50 m-auto">
+        <mat-form-field class="search-bar">
+            <mat-label>Want to know more about it? Ask a question</mat-label>
+            <input type="text" matInput  [(ngModel)]="searchQuery" (keyup.enter)="search()">
+          </mat-form-field>
+          <mat-progress-bar *ngIf="showLoader" mode="indeterminate"></mat-progress-bar>
+
+          <div *ngIf="responseData" class="responseData">
+          {{responseData}}
+           
+          </div>
+          <button class="btn btn--blue">Ask More</button>
+      </div>
+    <!-- </div> -->
+  <!-- </div> -->
+  
+
+
+</div>
   <div class="row">
     <div class="scroll-container">
         <button class="btn btn--cyan" routerLink="/explore">Explore</button>
-         <button class="btn btn--blue">Dive In</button>
-      <button class="btn btn--black">Ask me</button>
+         <button class="btn btn--blue"routerLink="/content">Contribute</button>
+      <!-- <button class="btn btn--black">Ask me</button> -->
       </div>
   </div>
 
-</div>
+
    
 
 

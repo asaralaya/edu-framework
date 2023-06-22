@@ -1,0 +1,105 @@
+<div class="row d-flex flex-row">
+    <div *ngIf="list && list.length > 0" class="flex heightFix col-9">
+        <ng-container *ngFor="let column of list; let i = index;">
+            <div class="flex-1 felx-col  col-container containers{{list.length}}" id="box{{i+1}}Container">
+                <div class="category-heading-sticky">
+                    <div class="category-heading-container d-flex justify-content-center">
+                        <div class='category-header justify-content-center'>
+                            <div class="" id="box{{i}}Header">
+                                <mat-icon [ngStyle]="{'color':'blue'}"></mat-icon>
+                                <h2 class="heading-color">{{column.name}}</h2>
+                                <ng-container *ngIf="i != 0 && categoryList?.length > 0; else firstColumn">
+                                    <ng-container *ngFor="let category of categoryList">
+                                        <ng-container *ngIf="(column.code == category.category) && column.index !== 1">
+                                            <!-- <span>{{category.count}}</span> -->
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-template #firstColumn>
+                                    <!-- <span *ngIf="i == 0" id="box{{i+1}}count">{{column.children.length}}</span> -->
+                                </ng-template>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- {{column.code}} -->
+                <div class="padding-x2 cat-columns container" id="box{{i+1}}">
+                    <lib-taxonomy-column-view *ngIf="loaded[column.code]" #selectedTaxonomyTerm [column]="column"
+                        [containerId]="'box'+(i+1)" (updateTaxonomyTerm)="updateTaxonomyTerm($event)"
+                        (updateTermList)="updateDraftStatusTerms($event)" (cardsCount)="getNoOfCards($event)">
+                    </lib-taxonomy-column-view>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="border-start details col-3">
+        <div class="" *ngIf="nodeType==='normal'">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="d-flex justify-content-center">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{nodeDescription}} </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="" *ngIf="nodeType==='leaf'">
+            <div>
+
+                <table class="table table-striped table-bordered" *ngIf="learningList.length>0">
+                    <thead>
+                        <tr>
+                            <th class="d-flex justify-content-center">Learning Outcomes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let learning of learningList">
+                            <td>{{learning.name}} </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <mat-progress-bar *ngIf="showLoader" mode="indeterminate"></mat-progress-bar>
+
+    <table *ngIf="responseData" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="d-flex justify-content-center">Suggested Outcomes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr > -->
+                <!-- <td>{{parseResponseData(responseData)}}</td> -->
+                <!-- <td>
+
+                    <ul>
+                        <li *ngFor="let line of parseResponseData(responseData)">
+                            {{line}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+            </div>
+        </div>
+        <div class="btn d-flex justify-content-center">
+            <button mat-raised-button routerLink="/content">Add Content</button>
+        </div>
+    </div>
+    <div *ngIf="!(list && list.length > 0 )" class="flex heightFix ">
+        <h1>{{app_strings.noData}}</h1>
+    </div>
+</div>
+
+
+<div *ngIf="isLoading" class="spinner">
+    <mat-spinner></mat-spinner>
+</div>

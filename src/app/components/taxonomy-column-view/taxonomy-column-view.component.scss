@@ -1,0 +1,65 @@
+.flex {
+    display: flex;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.mb1{
+    margin-bottom: 1em;
+}
+
+flex-center {
+    flex-wrap: nowrap;
+    align-items: start;
+    justify-content: center;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.felx-col {
+    flex-direction: column;
+}
+
+.padding-x2 {
+    padding: 0 2.5em;
+}
+
+/* .scrollable-y {
+    overflow: hidden;
+    overflow-y: scroll;
+} */
+
+.heightFix{
+    height: 100vh;
+    overflow: hidden;
+}
+
+.cat-columns:hover {
+    overflow-y: scroll;
+}
+
+.container {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+  }
+  
+  .container::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+  }
+
+  #this {
+    display: none
+} 
+
+#this:target {
+    display:block
+}
