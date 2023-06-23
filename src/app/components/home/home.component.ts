@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   responseData: string = ''
   showLoader = false
   errorData: boolean = false
+  showButton=false
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
@@ -29,12 +30,15 @@ export class HomeComponent implements OnInit {
       (response: any) => {
         if (response) this.showLoader = false
         this.searchQuery = ''
-        this.responseData = response.answer
+        this.responseData = response.answer;
+        this.showButton=true
       },
       (error: any) => {
         this.errorData = true
         this.showLoader = false
-        this.searchQuery = ''
+        this.searchQuery = '';
+        this.showButton=true
+
       });
   }
 

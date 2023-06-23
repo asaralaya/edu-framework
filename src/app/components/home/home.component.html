@@ -4,7 +4,7 @@
   <div class="container">
     <div class="banner d-flex flex-column justify-content-center align-item-center text-start py-4">
       <h1>Childhood Connect</h1>
-      <h3>Become a part of a transformative journey>>></h3>
+      <h2>Become a part of a transformative journey>>></h2>
     </div>
 
     <div class="row d-flex justify-content-center search mt-5">
@@ -14,7 +14,7 @@
       </p>
       <div class="d-flex flex-column justify-content-center align-item-center mt-4 mb-5  w-50 m-auto">
         <mat-form-field class="search-bar">
-          <mat-label>Want to know more about it? Ask a question</mat-label>
+          <mat-label>Want to know more about it? Ask a question and hit Enter</mat-label>
           <input type="text" matInput [(ngModel)]="searchQuery" (keyup.enter)="search()">
         </mat-form-field>
         <mat-progress-bar *ngIf="showLoader" mode="indeterminate"></mat-progress-bar>
@@ -24,7 +24,7 @@
         <div *ngIf="responseData" class="responseData  p-2 mb-2 border border-3 rounded">
           {{responseData}}
         </div>
-        <button class="ask-btn btn--blue" (click)="gotoBot()">Ask More</button>
+        <button [disabled]="!showButton" class="ask-btn btn--blue" (click)="gotoBot()">Ask More</button>
       </div>
     </div>
     <div class="row">
