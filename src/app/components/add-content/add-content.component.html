@@ -4,59 +4,93 @@
   <button mat-button routerLink="/home">Home</button>
 </mat-toolbar>
 
-<form class="form-container container d-flex flex-column justify-content-center">
-  <h1>Add New Content</h1>
+  <form class="form-container container d-flex flex-column justify-content-center p-4">
+  <h1 class="text-center">Add New Content</h1>
   <mat-form-field>
-    <input matInput placeholder="Name of the content" [(ngModel)]="contentName" name="contentName" required>
+    <input matInput placeholder="Name of the content" [(ngModel)]="contentName" name="contentName">
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Language</mat-label>
-    <mat-select [(ngModel)]="selectedLanguages" name="selectedLanguages" multiple required>
+    <mat-select [(ngModel)]="selectedLanguages" name="selectedLanguages" multiple>
       <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Theme</mat-label>
-    <mat-select [(ngModel)]="selectedThemes" name="selectedThemes" multiple required>
+    <mat-select [(ngModel)]="selectedTheme" name="selectedTheme">
       <mat-option *ngFor="let theme of themes" [value]="theme">{{ theme }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Type of content</mat-label>
-    <mat-select [(ngModel)]="selectedType" name="contentType" required>
+    <mat-select [(ngModel)]="selectedType" name="contentType">
       <mat-option *ngFor="let type of contentType" [value]="type">{{ type }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="number" placeholder="Age group relevant to" [(ngModel)]="ageGroup" name="ageGroup" required>
+    <input matInput type="number" placeholder="Age group relevant to" [(ngModel)]="ageGroup" name="ageGroup">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Link to the content" [(ngModel)]="contentLink" name="contentLink" required>
+    <input matInput placeholder="Link to the content" [(ngModel)]="contentLink" name="contentLink">
   </mat-form-field>
 
   <mat-form-field>
     <textarea matInput placeholder="Description" [(ngModel)]="description" name="description" required></textarea>
   </mat-form-field>
-
-  <mat-form-field *ngIf="!routeEnabled">
+ 
+  <div *ngIf="!routeEnabled">
+    <mat-form-field>
+      <mat-label>Competency</mat-label>
+      <mat-select [(ngModel)]="selectedCompetency" name="competency" multiple>
+        <mat-option *ngFor="let comp of competency" [value]="comp">{{ comp }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+ 
+<ng-container *ngIf="routeEnabled">
+  <mat-form-field>
     <mat-label>Competency</mat-label>
-    <mat-select [(ngModel)]="selectedCompetency" name="competency" multiple required>
-      <mat-option *ngFor="let comp of competency" [value]="comp">{{ comp }}</mat-option>
-    </mat-select>
+    <input matInput [(ngModel)]="selectedCompetency" name="competency">
   </mat-form-field>
-
-  <mat-form-field *ngIf="routeEnabled">
-    <mat-label>Competency</mat-label>
-    <input matInput [(ngModel)]="selectedCompetency" name="competency" disabled>
-  </mat-form-field>
-  
+</ng-container>
+ 
+  <div class="d-flex justify-content-center mb-3">
+    <button mat-raised-button color="accent" [disabled]='!description' (click)="fetchCompetency()">Suggest
+      competency</button>
+  </div>
+  <mat-progress-bar *ngIf="showLoader" mode="indeterminate"></mat-progress-bar>
+  <span *ngIf="showLoader">Please wait for sometime...</span>
+  <span *ngIf="errorData" class="error">An Unexpected Error Occured! Please Try Again</span>
+  <table *ngIf="responseData && !showLoader && !errorData" class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="d-flex justify-content-center">Suggested Competencies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <ul *ngIf="!ol">
+            <li *ngFor="let line of responseData">
+              {{line}}
+            </li>
+          </ul>
+          <dl *ngIf="ol">
+            <dd *ngFor="let line of responseData">
+              {{line}}
+            </dd>
+          </dl>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <div class="d-flex justify-content-center">
-    <button mat-raised-button color="primary" type="submit">Submit</button>\
+    <button mat-raised-button color="primary" type="submit">Submit</button>
   </div>
 
 </form>
