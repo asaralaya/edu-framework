@@ -1,4 +1,4 @@
-<div class=" d-flex flex-column justify-content-center align-item-center align-self-center text-center">
+<div class="d-flex flex-column justify-content-center align-item-center align-self-center text-center">
 
 
   <div class="container">
@@ -7,7 +7,7 @@
       <h3>Become a part of a transformative journey>>></h3>
     </div>
 
-    <div class="row search mt-5">
+    <div class="row d-flex justify-content-center search mt-5">
       <p> The new National Curriculum Framework for Foundational Stage is a transformative framework that aims
         integrated, holistic approach to Early Childhood Care and Education for children aged 3-8, aiming to improve the
         quality of educational content and outcomes, thus positively impacting children's lives towards a better future.
@@ -24,11 +24,11 @@
         <div *ngIf="responseData" class="responseData  p-2 mb-2 border border-3 rounded">
           {{responseData}}
         </div>
-        <button class="ask-btn btn--blue">Ask More</button>
+        <button class="ask-btn btn--blue" (click)="gotoBot()">Ask More</button>
       </div>
     </div>
     <div class="row">
-      <div class="scroll-container d-flex justify-content-between">
+      <div class="scroll-container d-flex flex-column flex-md-row justify-content-between">
         <button class="btn btn--cyan" routerLink="/explore">Explore NCF</button>
         <button class="btn btn--blue" routerLink="/content">Contribute Content</button>
         <button class="btn btn--cyan" routerLink="/explorecontent">Explore Content</button>

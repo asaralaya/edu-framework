@@ -38,4 +38,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  gotoBot() {
+    window.open("https://t.me/NCFFSHelperBot");
+  }
 }

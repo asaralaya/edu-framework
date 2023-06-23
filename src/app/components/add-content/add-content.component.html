@@ -4,7 +4,8 @@
   <button mat-button routerLink="/home">Home</button>
 </mat-toolbar>
 
-<form class="form-container">
+<form class="form-container container d-flex flex-column justify-content-center">
+  <h1>Add New Content</h1>
   <mat-form-field>
     <input matInput placeholder="Name of the content" [(ngModel)]="contentName" name="contentName" required>
   </mat-form-field>
@@ -25,7 +26,7 @@
 
   <mat-form-field>
     <mat-label>Type of content</mat-label>
-    <mat-select [(ngModel)]="contentType" name="contentType" required>
+    <mat-select [(ngModel)]="selectedType" name="contentType" required>
       <mat-option *ngFor="let type of contentType" [value]="type">{{ type }}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -52,8 +53,10 @@
   <mat-form-field *ngIf="routeEnabled">
     <mat-label>Competency</mat-label>
     <input matInput [(ngModel)]="selectedCompetency" name="competency" disabled>
-
   </mat-form-field>
+  
+  <div class="d-flex justify-content-center">
+    <button mat-raised-button color="primary" type="submit">Submit</button>\
+  </div>
 
-  <button mat-raised-button color="primary" type="submit">Submit</button>
 </form>

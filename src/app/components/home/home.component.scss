@@ -88,6 +88,7 @@ button:active,
 
   &--blue {
     @include color(#97CAEF);
+    color: black
   }
 
   &--pink {
@@ -108,3 +109,10 @@ button:active,
 }
 
 /* BUTTON STYLING ENDS */
+
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+}

@@ -106,8 +106,13 @@ img {
     flex-direction: column;
   }
 
+  .details {
+    color: black;
+  }
+
   .bg {
-    background: none !important;
+    background: white !important;
+    color: black;
   }
 
   .head {

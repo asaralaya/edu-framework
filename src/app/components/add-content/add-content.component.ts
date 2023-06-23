@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-add-content',
@@ -14,6 +15,7 @@ export class AddContentComponent implements OnInit {
   contentLink: string;
   description: string;
   selectedCompetency: string[] = [];
+  selectedType:string;
 
   languages: string[] = ['English', 'Hindi', 'Gujarati', 'Assamese', 'Tamil', 'Marathi', 'Kannada'];
   themes: string[] = ['Animals', 'Birds', 'Vegetables', 'Nature', 'Relations'];
@@ -21,7 +23,7 @@ export class AddContentComponent implements OnInit {
   competency: string[] = ['Competency A', 'Competency B', 'Competency C'];
   routeEnabled: boolean = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,private render:Renderer2) { }
   data: string;
 
   ngOnInit() {
@@ -31,8 +33,7 @@ export class AddContentComponent implements OnInit {
         this.selectedCompetency.push(this.data)
         this.routeEnabled = true;
       }
-      console.log(this.selectedCompetency)
     });
-
   }
+ 
 }
