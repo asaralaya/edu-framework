@@ -43,14 +43,14 @@
     <textarea matInput placeholder="Description" [(ngModel)]="description" name="description" required></textarea>
   </mat-form-field>
  
-  <div *ngIf="!routeEnabled">
+  <ng-container *ngIf="!routeEnabled">
     <mat-form-field>
       <mat-label>Competency</mat-label>
       <mat-select [(ngModel)]="selectedCompetency" name="competency" multiple>
         <mat-option *ngFor="let comp of competency" [value]="comp">{{ comp }}</mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
+  </ng-container>
  
 <ng-container *ngIf="routeEnabled">
   <mat-form-field>
