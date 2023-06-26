@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Renderer2 } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
+import { FRAMEWORK } from '../../constants/data'
 
 @Component({
   selector: 'app-add-content',
@@ -21,7 +21,10 @@ export class AddContentComponent implements OnInit {
   languages: string[] = ['English', 'Hindi', 'Gujarati', 'Assamese', 'Tamil', 'Marathi', 'Kannada'];
   themes: string[] = ['Animals', 'Birds', 'Vegetables', 'Nature', 'Relations'];
   contentType: string[] = ['Video', 'Read Along', 'Read', 'Audio', 'Sign Language'];
-  competency: string[] = ['Competency A', 'Competency B', 'Competency C'];
+  competency = FRAMEWORK.result.framework.categories[2].terms.map(function (value) {
+    console.log(value)
+    return value.name;
+  });
   routeEnabled: boolean = false;
   responseData: string = '';
   showLoader: boolean = false;
@@ -51,7 +54,7 @@ export class AddContentComponent implements OnInit {
       uuid_number: '4653c216-1033-11ee-8f12-0242ac110002',
       query_string: query
     };
-    
+
     this.chatService.search(params).subscribe(
       (response: any) => {
         if (response.answer.indexOf('\n\n1')) {
