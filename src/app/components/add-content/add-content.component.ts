@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/services/chat.service';
 import { FRAMEWORK } from '../../constants/data'
+import { MatDialog } from '@angular/material/dialog';
+import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-add-content',
@@ -30,17 +32,17 @@ export class AddContentComponent implements OnInit {
   errorData: boolean = false;
   ol: boolean = false;
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService) { }
+  constructor(private route: ActivatedRoute, private chatService: ChatService, public dialog: MatDialog) { }
   data: string;
 
   ngOnInit() {
-    this.route.queryParams.subscribe(queryParams => {
-      this.data = queryParams['data'];
-      if (this.data) {
-        this.selectedCompetency.push(this.data)
-        this.routeEnabled = true;
-      }
-    });
+    // this.route.queryParams.subscribe(queryParams => {
+    //   this.data = queryParams['data'];
+    //   if (this.data) {
+    //     this.selectedCompetency.push(this.data)
+    //     this.routeEnabled = true;
+    //   }
+    // });
   }
 
   fetchCompetency() {
@@ -71,5 +73,18 @@ export class AddContentComponent implements OnInit {
         this.errorData = true
         this.showLoader = false
       });
+  }
+
+  openDialog(): void {
+    let data = { type: 'Submit', description: 'You have Successfully tagged your content!' };
+console.log(data)
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '500px',
+      data: data,
+  
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-explore-content',
@@ -167,25 +168,4 @@ export class ExploreContentComponent implements OnInit {
 }
 
 
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: '../dialog/dialog.component.html',
-  styleUrls: ['../dialog/dialog.component.scss']
-
-})
-export class DialogOverviewExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-
-  ) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  navigate(url: any) {
-    window.open(url)
-  }
-}
 

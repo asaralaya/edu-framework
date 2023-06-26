@@ -40,6 +40,9 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
   responseData: string;
   showLoader: boolean = false;
   nodeCompetency: any = '';
+  errorData: boolean=false;
+  ol: boolean = false;
+
   constructor(private frameworkService: FrameworkService,
     public dialog: MatDialog,
     private connectorSvc: ConnectorService,
@@ -77,6 +80,9 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
       this.nodeType = 'leaf'
       this.learningList = data.selectedTerm.children;
       this.nodeCompetency = data.selectedTerm.name;
+      this.responseData=''
+
+      console.log(this.nodeCompetency)
       // this.responseData = ''
       // this.showLoader=true
       // const params = {
@@ -262,11 +268,41 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
     this.showActionBar = false;
   }
   ngOnDestroy() {
-    //console.log("ondestro")
     this.connectorSvc.removeAllLines()
   }
   navigateToRoute(): void {
     const data = this.nodeCompetency;
     this.router.navigate(['content'], { queryParams: { data } });
+  }
+  suggestActivity(){
+    this.showLoader = true
+    this.errorData = false
+    let query = `Suggest best three activities that I can do  related to - ${this.nodeCompetency}`
+
+    const params = {
+      uuid_number: '4653c216-1033-11ee-8f12-0242ac110002',
+      query_string: query
+    };
+
+    this.chatService.search(params).subscribe(
+      (response: any) => {
+        if (response.answer.indexOf('\n\n1')) {
+          let data = response.answer.replaceAll('\n\n', '\n').split('\n');
+          this.showLoader = false
+          this.ol = true
+          this.responseData = data;
+          console.log('1',this.responseData)
+        } else {
+          let data = response.answer.replaceAll('\n', '').split('- ');
+          this.showLoader = false
+          this.responseData = data;
+          console.log('2',this.responseData)
+
+        }
+      },
+      (error: any) => {
+        this.errorData = true
+        this.showLoader = false
+      });
   }
 }

@@ -1,14 +1,20 @@
 <div mat-dialog-content>
   <p><b>{{data.description}}</b></p>
 </div>
-<div mat-dialog-actions>
-  <div class="row">
+<div mat-dialog-actions class="d-flex justify-content-center ">
+  <div class="row" *ngIf="data.type!=='Submit'">
     <div class="col d-flex justify-content-center ">
       <button class="primary" mat-raised-button color="primary" (click)="navigate(data.url);onNoClick()">Take
         me</button>
     </div>
     <div class="col d-flex justify-content-center">
       <button class="secondary" mat-raised-button color="warn" (click)="onNoClick()">No</button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="data.type==='Submit'">
+    <div class="col d-flex justify-content-center">
+      <button class="secondary" mat-raised-button color="warn" (click)="refresh()">OK</button>
     </div>
   </div>
 </div>

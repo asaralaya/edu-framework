@@ -26,6 +26,7 @@ import { ChatService } from './services/chat.service';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ExploreContentComponent } from './components/explore-content/explore-content.component';
+import { DialogOverviewExampleDialog } from './components/dialog/dialog.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ExploreContentComponent } from './components/explore-content/explore-co
     TaxonomyColumnViewComponent,
     AddContentComponent,
     ExploreContentComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
