@@ -22,7 +22,6 @@ export class AddContentComponent implements OnInit {
   themes: string[] = ['Animals', 'Birds', 'Vegetables', 'Nature', 'Relations'];
   contentType: string[] = ['Video', 'Read Along', 'Read', 'Audio', 'Sign Language'];
   competency = FRAMEWORK.result.framework.categories[2].terms.map(function (value) {
-    console.log(value)
     return value.name;
   });
   routeEnabled: boolean = false;
