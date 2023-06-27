@@ -120,6 +120,30 @@ export class ExploreContentComponent implements OnInit {
     url: "https://storyweaver.org.in/stories/378-en-nanbargal",
     source: "Storyweaver",
     age: "5 Year"
+  },
+  {
+    id: 10,
+    title: "0 के बारे में जानना",
+    description: "Learning numbers through food",
+    type: "Video",
+    icon: "../../../assets/icons/jackal-drum.png",
+    theme: "Numbers",
+    language: "Hindi",
+    url: "https://diksha.gov.in/play/content/do_3133929724387573761320",
+    source: "Rocket Learning",
+    age: "6 yrs"
+  },
+  {
+    id: 11,
+    title: "10-20 संख्याओं को अलग करके लिखना",
+    description: "Differentiating numbers through objects",
+    type: "Video",
+    icon: "../../../assets/icons/kachkach.png",
+    theme: "Numbers",
+    language: "Hindi",
+    url: "https://diksha.gov.in/play/content/do_3133930730444390401645",
+    source: "Rocket Learning",
+    age: "6 yrs"
   }
   ]
 
