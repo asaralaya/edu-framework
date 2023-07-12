@@ -11,12 +11,10 @@
                                 <ng-container *ngIf="i != 0 && categoryList?.length > 0; else firstColumn">
                                     <ng-container *ngFor="let category of categoryList">
                                         <ng-container *ngIf="(column.code == category.category) && column.index !== 1">
-                                            <!-- <span>{{category.count}}</span> -->
                                         </ng-container>
                                     </ng-container>
                                 </ng-container>
                                 <ng-template #firstColumn>
-                                    <!-- <span *ngIf="i == 0" id="box{{i+1}}count">{{column.children.length}}</span> -->
                                 </ng-template>
 
                             </div>
@@ -24,11 +22,10 @@
 
                     </div>
                 </div>
-                <!-- {{column.code}} -->
                 <div class="padding-x2 cat-columns container" id="box{{i+1}}">
                     <lib-taxonomy-column-view *ngIf="loaded[column.code]" #selectedTaxonomyTerm [column]="column"
                         [containerId]="'box'+(i+1)" (updateTaxonomyTerm)="updateTaxonomyTerm($event)"
-                        (updateTermList)="updateDraftStatusTerms($event)" (cardsCount)="getNoOfCards($event)">
+                         (cardsCount)="getNoOfCards($event)">
                     </lib-taxonomy-column-view>
                 </div>
             </div>
@@ -81,7 +78,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <!-- <td>{{parseResponseData(responseData)}}</td> -->
                             <ul *ngIf="!ol">
                                 <li *ngFor="let line of responseData">
                                   {{line}}
@@ -97,12 +93,9 @@
                 </table>
             </div>
         </div>
-        <!-- <div class="btn d-flex justify-content-center">
-            <button mat-raised-button (click)="navigateToRoute()" *ngIf="nodeCompetency">Add Content</button>
-        </div> -->
     </div>
     <div *ngIf="!(list && list.length > 0 )" class="flex heightFix ">
-        <h1>{{app_strings.noData}}</h1>
+        <h1>No Data Found</h1>
     </div>
 </div>
 

@@ -10,10 +10,8 @@ export class ChatService {
   constructor(private http:HttpClient) { }
 
   search(params:any) :Observable<any> {
-    // Perform the search based on the input query
-    const url = `http://20.219.197.218:8000/query-with-langchain-gpt4`;
+    const url = ``;// Add Chat service URL here
     const httpParams = new HttpParams({ fromObject: params });
     return this.http.get(url,{ params: httpParams })
-    // Add your search logic here
   }
 }

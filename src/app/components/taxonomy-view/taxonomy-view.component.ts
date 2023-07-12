@@ -4,9 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { ConnectorService } from '../../services/connector.service';
 import { defaultConfig, headerLineConfig } from '../../constants/app-constant';
-import { labels } from '../../labels/strings';
-import { CardSelection, CardChecked, Card } from '../../models/variable-type.model';
-import { leastIndex } from 'd3';
+import {  Card } from '../../models/variable-type.model';
 import { ChatService } from 'src/app/services/chat.service';
 import { Router } from '@angular/router';
 
@@ -33,7 +31,6 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
   draftTerms: Array<Card> = [];
   isLoading: boolean = false;
   categoryList: any = [];
-  app_strings: any = labels;
   nodeDescription: String = '';
   nodeType: any;
   learningList = []
@@ -61,7 +58,6 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
 
     this.frameworkService.getFrameworkInfo().subscribe(res => {
       this.connectorSvc.removeAllLines()
-      // this.updateLocalData()
       this.frameworkService.categoriesHash.value.forEach((cat: any) => {
         this.loaded[cat.code] = true
       })
@@ -75,29 +71,11 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
 
 
   updateTaxonomyTerm(data: { selectedTerm: any, isSelected: boolean, lastNode?: boolean }) {
-    //  console.log(data)
     if (data.selectedTerm?.category === 'competency') {
       this.nodeType = 'leaf'
       this.learningList = data.selectedTerm.children;
       this.nodeCompetency = data.selectedTerm.name;
       this.responseData=''
-
-      console.log(this.nodeCompetency)
-      // this.responseData = ''
-      // this.showLoader=true
-      // const params = {
-      //   uuid_number: '269ff416-1057-11ee-8f12-0242ac110002',
-      //   query_string: 'list down in bullets learning outcome for ' + data.selectedTerm.name
-      // };
-      // this.chatService.search(params).subscribe(
-      //   (response: any) => {
-      //     this.showLoader=false
-      //     this.responseData = response.answer
-      //   },
-      //   (error: any) => {
-      //     // Handle any error here
-      //   });
-
     } else {
       this.nodeType = 'normal'
 
@@ -120,7 +98,6 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
   //need to refactor at heigh level
   updateFinalList(data: { selectedTerm: any, isSelected: boolean, parentData?: any, colIndex?: any }) {
     if (data.isSelected) {
-      // data.selectedTerm.selected = data.isSelected
       this.frameworkService.selectionList.set(data.selectedTerm.category, data.selectedTerm)
       const next = this.frameworkService.getNextCategory(data.selectedTerm.category)
       if (next && next.code) {
@@ -144,42 +121,8 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
   isEnabled(columnCode: string): boolean {
     return !!this.frameworkService.selectionList.get(columnCode)
   }
-  // openCreateTermDialog(column, colIndex) {  
-  //   if (!this.isEnabled(column.code)) {
-  //     const dialog = this.dialog.open(CreateTermComponent, {
-  //       data: { columnInfo: column, frameworkId: this.frameworkService.getFrameworkId(), selectedparents: this.heightLighted, colIndex: colIndex },
-  //       width: '400px',
-  //       panelClass: 'custom-dialog-container'
-  //     })
-  //     dialog.afterClosed().subscribe(res => {
-  //       if(!res) {
-  //         return;
-  //       }
-  //       if (res && res.created) {
-  //         this.showPublish = true
-  //       }
-  //       this.loaded[res.term.category] = false
-  //       // wait
-  //       const parentColumn = this.frameworkService.getPreviousCategory(res.term.category)
-  //       res.parent = null
-  //       if (parentColumn) {
-  //         res.parent = this.frameworkService.selectionList.get(parentColumn.code)
-  //         res.parent.children? res.parent.children.push(res.term) :res.parent['children'] = [res.term]
-  //         // res.parent.associations?.push(res)
-  //       }
-  //       // this.frameworkService.setTerm = res;
-  //       this.updateFinalList({ selectedTerm: res.term, isSelected: false, parentData: res.parent, colIndex:colIndex })
-  //       // this.frameworkService.insertUpdateDeleteNotifier.next({ type: 'insert', action: res.parent.code, data: res.term })
-  //     })
-  //   }
-  // }
 
   get list(): any[] {
-    // console.log('this.frameworkService.list :: ',this.frameworkService.list)
-    // if (this.localList.length === 0) {
-    //   this.updateLocalData()
-    // }
-    // return this.localList
     return Array.from(this.frameworkService.list.values())
   }
 
@@ -198,32 +141,6 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
     return this.frameworkService.list.get(columnCode)
   }
 
-  newConnection() {
-    // const dialog = this.dialog.open(ConnectorComponent, {
-    //   data: {},
-    //   width: '90%',
-    //   // panelClass: 'custom-dialog-container' 
-    // })
-    // dialog.afterClosed().subscribe((res: IConnectionType) => {
-    //   if ((res.source === 'online' && res.data.endpoint) || (res.source === 'offline')) {
-    //     this.localSvc.localStorage = res
-    //     this.init()
-    //   } else if (res.source === 'online' && !res.data.endpoint) {
-    //     this.localSvc.localStorage = res
-    //     this.init()
-    //   }
-    // })
-  }
-
-  updateDraftStatusTerms(event) {
-    // if(event.checked) {
-    //   this.draftTerms.push(event.term)
-    //   } else {
-    //   this.draftTerms = this.draftTerms.filter(d => event.term.identifier !== d.identifier)
-    // }
-    // this.showActionBar = this.draftTerms.length>0?true:false
-  }
-
   getNoOfCards(event: any) {
     if (this.categoryList.length > 0 && event.category !== '') {
       let index = this.categoryList.findIndex((obj: any) => obj.category == event.category);
@@ -235,33 +152,6 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
       this.categoryList[this.categoryList.length - 1].count = 0;
     }
     this.categoryList.push(event);
-  }
-
-
-
-  sendForApproval() {
-    // if(!this.isApprovalView){
-    //     let parentList = []
-    //     this.list.forEach(ele => {
-    //       const t = ele.children.filter(term => term.selected === true)
-    //       if(t[0]){
-    //         parentList.push(t[0])
-    //       } 
-    //     })
-    //     const req = {
-    //       updateFieldValues:[...parentList, ...this.draftTerms]
-    //     }
-    //     this.approvalService.createApproval(req).subscribe(res => {
-    //       this.frameworkService.removeOldLine()
-    //       this._snackBar.open('Terms successfully sent for Approval.', 'cancel')
-    //       // this.router.navigate(['/approval'])
-    //       // this.showActionBar = false;
-    //     })
-    // } else {
-    //   this.sentForApprove.emit(this.draftTerms)
-    //   console.log(this.draftTerms)
-    // }
-
   }
 
   closeActionBar(e) {
